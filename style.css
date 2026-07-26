@@ -1,0 +1,577 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   LAW OFFICE OF TIMOTHY J. MORGAN — PERMANENT RETIREMENT NOTICE
+   Design: Legal document authority meets personal warmth.
+   Palette: Deep courthouse slate, aged paper cream, gold seal accent.
+   Typography: EB Garamond (display/headings — gravitas) + Inter (body — clarity)
+   Signature element: The embossed-style seal ring in the header — 
+     evokes a notary seal, immediately signals "official legal document"
+     without being cold or institutional.
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ── TOKENS ─────────────────────────────────────────────────────────────── */
+:root {
+  --slate:       #1C2B3A;   /* deep courthouse blue-grey */
+  --slate-mid:   #2D4156;   /* mid slate for borders */
+  --slate-light: #E8EEF4;   /* very pale slate for backgrounds */
+  --cream:       #F9F6EF;   /* aged paper */
+  --cream-dark:  #EDE8DC;   /* slightly darker cream for contrast */
+  --gold:        #9A7B3C;   /* antique gold — seal, accents */
+  --gold-light:  #C9A55A;   /* lighter gold for hover */
+  --gold-faint:  #F5EDD6;   /* gold tint background */
+  --ink:         #1A1A1A;   /* body text */
+  --ink-mid:     #3D3D3D;   /* secondary text */
+  --ink-light:   #6B6B6B;   /* captions, fine print */
+  --rule:        #D4C9B0;   /* horizontal rules */
+  --white:       #FFFFFF;
+
+  --font-serif:  'EB Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --max-w: 780px;
+  --pad-x: clamp(1rem, 5vw, 2.5rem);
+  --radius: 3px;
+  --shadow: 0 2px 12px rgba(28, 43, 58, 0.10);
+  --shadow-lg: 0 6px 32px rgba(28, 43, 58, 0.14);
+}
+
+/* ── RESET ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 17px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── TYPOGRAPHY SCALE ────────────────────────────────────────────────────── */
+h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--slate);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--slate);
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: var(--slate-mid);
+  margin-bottom: 0.5rem;
+}
+
+p { margin-bottom: 0.85rem; color: var(--ink-mid); }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--slate);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--gold);
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+a:hover { color: var(--gold); text-decoration-color: var(--gold-light); }
+a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+strong { font-weight: 500; color: var(--ink); }
+em { font-style: italic; }
+
+/* ── HEADER — THE SEAL ───────────────────────────────────────────────────── */
+.site-header {
+  background: var(--slate);
+  padding: 3rem var(--pad-x) 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  border-bottom: 4px solid var(--gold);
+}
+
+/* The signature element: embossed-style seal ring */
+.seal-ring {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  box-shadow:
+    0 0 0 2px rgba(154, 123, 60, 0.3),
+    0 0 0 6px rgba(154, 123, 60, 0.12),
+    0 0 0 8px rgba(154, 123, 60, 0.06),
+    inset 0 0 0 8px rgba(154, 123, 60, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: radial-gradient(circle at 40% 35%, rgba(154,123,60,0.15) 0%, transparent 65%);
+}
+
+.seal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.seal-state {
+  font-family: var(--font-sans);
+  font-size: 0.38rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1.2;
+}
+
+.seal-name {
+  font-family: var(--font-serif);
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.seal-title {
+  font-family: var(--font-sans);
+  font-size: 0.36rem;
+  font-weight: 300;
+  color: rgba(201, 165, 90, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.seal-years {
+  font-family: var(--font-sans);
+  font-size: 0.32rem;
+  color: rgba(201, 165, 90, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+  border-top: 0.5px solid rgba(154, 123, 60, 0.4);
+  padding-top: 2px;
+  width: 100%;
+  text-align: center;
+}
+
+.header-text {
+  text-align: center;
+}
+
+.office-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(201, 165, 90, 0.75);
+  margin-bottom: 0.35rem;
+}
+
+.site-header h1 {
+  color: var(--white);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.bar-line {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+  letter-spacing: 0.04em;
+}
+
+/* ── NOTICE BANNER ───────────────────────────────────────────────────────── */
+.notice-banner {
+  background: var(--gold-faint);
+  border-bottom: 1px solid var(--rule);
+  border-top: 1px solid var(--rule);
+  padding: 1rem var(--pad-x);
+}
+
+.notice-banner-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.notice-icon {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--gold);
+  line-height: 1.3;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.notice-banner p {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--ink);
+  margin: 0;
+  padding-top: 0.2rem;
+}
+
+.notice-banner strong {
+  font-style: normal;
+  color: var(--slate);
+}
+
+/* ── MAIN CONTENT ────────────────────────────────────────────────────────── */
+.content {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 2rem var(--pad-x) 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── CARDS ───────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--radius);
+  padding: clamp(1.25rem, 4vw, 2rem);
+  box-shadow: var(--shadow);
+}
+
+.card-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+
+/* Primary card — custodian contact */
+.card--primary {
+  border-left: 4px solid var(--slate);
+}
+
+.card--primary h2 {
+  margin-bottom: 0.85rem;
+}
+
+/* Custodian card inside primary */
+.custodian-card {
+  margin-top: 1.25rem;
+  background: var(--slate);
+  border-radius: var(--radius);
+  padding: 1.35rem 1.5rem;
+  color: var(--white);
+}
+
+.custodian-label {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold-light);
+  margin-bottom: 0.5rem;
+}
+
+.custodian-name {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.15rem;
+  line-height: 1.2;
+}
+
+.custodian-bar {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding-bottom: 0.85rem;
+}
+
+.custodian-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-item--full {
+  grid-column: 1 / -1;
+}
+
+.contact-icon {
+  color: var(--gold-light);
+  flex-shrink: 0;
+  font-size: 0.85rem;
+}
+
+.custodian-card a {
+  color: var(--gold-light);
+  text-decoration-color: rgba(201, 165, 90, 0.4);
+  font-size: 0.9rem;
+}
+
+.custodian-card a:hover { color: var(--white); }
+
+.custodian-note {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.45);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+/* Steps card */
+.card--steps { border-left: 4px solid var(--gold); }
+
+.steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 0.75rem;
+  counter-reset: none;
+}
+
+.steps li {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--slate);
+  color: var(--gold-light);
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+}
+
+.steps li > div strong {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--slate);
+  margin-bottom: 0.25rem;
+}
+
+.steps li > div p {
+  font-size: 0.88rem;
+  margin: 0;
+  color: var(--ink-mid);
+}
+
+/* Secondary card — two column */
+.card--secondary {}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.inquiry-block p {
+  font-size: 0.88rem;
+}
+
+/* Referral card */
+.card--referral {
+  background: var(--slate-light);
+  border: 1px solid var(--cream-dark);
+}
+
+.referral-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.referral-text { flex: 1; min-width: 220px; }
+.referral-text h2 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+.referral-text p { font-size: 0.85rem; margin: 0; }
+
+.referral-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.referral-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--slate);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: var(--radius);
+  padding: 0.6rem 1.25rem;
+  min-width: 160px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.referral-btn:hover {
+  background: var(--slate-mid);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.btn-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+.btn-value {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--white);
+}
+
+/* ── PLACEHOLDER STYLING ─────────────────────────────────────────────────── */
+.placeholder {
+  background: rgba(154, 123, 60, 0.12);
+  color: var(--gold);
+  border-radius: 2px;
+  padding: 0 3px;
+  font-style: italic;
+}
+
+/* ── FOOTER ──────────────────────────────────────────────────────────────── */
+.site-footer {
+  background: var(--slate);
+  border-top: 3px solid var(--gold);
+  padding: 1.75rem var(--pad-x);
+}
+
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-name {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
+.footer-notice {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  margin: 0;
+}
+
+.footer-bar {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.3);
+  margin: 0;
+}
+
+.footer-bar a {
+  color: var(--gold-light);
+  text-decoration-color: rgba(201, 165, 90, 0.3);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .two-col { grid-template-columns: 1fr; gap: 1.2rem; }
+  .custodian-contact-grid { grid-template-columns: 1fr; }
+  .contact-item--full { grid-column: 1; }
+  .referral-inner { flex-direction: column; align-items: flex-start; }
+  .referral-links { flex-direction: row; flex-wrap: wrap; width: 100%; }
+  .referral-btn { flex: 1; min-width: 140px; }
+  .notice-banner-inner { gap: 0.6rem; }
+}
+
+@media (max-width: 420px) {
+  .site-header { padding: 2rem 1rem 2rem; }
+  .seal-ring { width: 90px; height: 90px; }
+}
+
+/* ── REDUCED MOTION ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ── PRINT ───────────────────────────────────────────────────────────────── */
+@media print {
+  body { background: white; font-size: 12pt; }
+  .site-header { background: white !important; border-bottom: 2pt solid black; }
+  .site-header h1, .header-text * { color: black !important; }
+  .custodian-card { background: white !important; border: 2pt solid black; }
+  .custodian-card * { color: black !important; }
+  .notice-banner { background: white !important; border: 1pt solid black; }
+  .site-footer { background: white !important; border-top: 1pt solid black; }
+  .site-footer * { color: black !important; }
+  .seal-ring { border: 2pt solid black; box-shadow: none; }
+  .card { box-shadow: none; border: 1pt solid #999; }
+  .referral-btn { border: 1pt solid black; background: white !important; }
+  .btn-value, .btn-label { color: black !important; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+}
