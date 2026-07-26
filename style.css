@@ -114,7 +114,7 @@ em { font-style: italic; }
 
 /* The signature element: embossed-style seal ring */
 .seal-ring {
-  width: 125px;
+  width: 180px;
   height: 125px;
   border-radius: 50%;
   border: 3px solid var(--gold);
