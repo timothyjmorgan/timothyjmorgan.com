@@ -104,18 +104,18 @@ em { font-style: italic; }
 /* ── HEADER — THE SEAL ───────────────────────────────────────────────────── */
 .site-header {
   background: var(--slate);
-  padding: 3rem var(--pad-x) 2.5rem;
+  padding: 1.5rem var(--pad-x) 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 0.5rem;
   border-bottom: 4px solid var(--gold);
 }
 
 /* The signature element: embossed-style seal ring */
 .seal-ring {
-  width: 180px;
-  height: 125px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   border: 3px solid var(--gold);
   box-shadow:
@@ -549,7 +549,7 @@ em { font-style: italic; }
 }
 
 @media (max-width: 420px) {
-  .site-header { padding: 2rem 1rem 2rem; }
+  .site-header { padding: 1rem 1rem 1rem; }
   .seal-ring { width: 90px; height: 90px; }
 }
 
